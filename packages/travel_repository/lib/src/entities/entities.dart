@@ -1,0 +1,1 @@
+export 'travel_entity.dart';

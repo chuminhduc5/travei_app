@@ -1,0 +1,46 @@
+name: travel_application
+description: "A new Flutter project."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.6
+  equatable: ^2.0.5
+
+  # Custom Slider
+  carousel_slider: ^4.2.1
+  smooth_page_indicator: ^1.1.0
+
+  # Bloc
+  flutter_bloc: ^8.1.5
+
+  # Firebase
+  firebase_core: ^2.31.1
+  firebase_auth: ^4.19.6
+
+  # Custom User Repository
+  user_repository:
+    path: packages/user_repository
+
+  travel_repository:
+    path: packages/travel_repository
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^3.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/images/
