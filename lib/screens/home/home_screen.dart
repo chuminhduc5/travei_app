@@ -134,7 +134,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: CircularProgressIndicator(color: AppColors.blue),
                 );
               }
-              return Container(); // Returning an empty Container to avoid layout issues
+              return Container();
             },
           ),
         ],

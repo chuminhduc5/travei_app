@@ -19,11 +19,12 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     _userSubscription = userRepository.user.listen((authUser) {
       add(AuthenticationUserChanged(authUser));
     });
+
     on<AuthenticationUserChanged>((event, emit) {
       if( event.user != null){
         emit(AuthenticationState.authenticated(event.user!));
       }else {
-        emit(AuthenticationState.unauthenticated());
+        emit(const AuthenticationState.unauthenticated());
       }
     });
   }

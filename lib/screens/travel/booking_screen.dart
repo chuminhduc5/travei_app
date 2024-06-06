@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:keyboard_avoider/keyboard_avoider.dart';
 import 'package:travel_repository/travel_repository.dart';
 
@@ -27,6 +29,12 @@ class _BookingScreenState extends State<BookingScreen> {
   };
 
   @override
+  void initState() {
+    super.initState();
+    _fetchUserData();
+  }
+
+  @override
   void dispose() {
     controllers.forEach((key, controller) {
       controller.dispose();
@@ -34,24 +42,17 @@ class _BookingScreenState extends State<BookingScreen> {
     super.dispose();
   }
 
-  void _showDialog() {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            backgroundColor: Colors.white,
-            title: const Text('Thông báo'),
-            content: const Text('Bạn đã đặt tour thành công'),
-            actions: [
-              MaterialButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('Đóng'),
-              )
-            ],
-          );
-        });
+  Future<void> _fetchUserData() async {
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      DocumentSnapshot userData = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+      if (userData.exists) {
+        controllers['name']!.text = userData['name'] ?? '';
+        controllers['email']!.text = userData['email'] ?? '';
+        controllers['phoneNumber']!.text = userData['phoneNumber'] ?? '';
+        controllers['address']!.text = userData['address'] ?? '';
+      }
+    }
   }
 
   @override
@@ -148,7 +149,7 @@ class _BookingScreenState extends State<BookingScreen> {
                   height: 20,
                 ),
                 TravelFormBooking(
-                    hintext: 'Trẻ em (6 - 17 tuổi)',
+                    hintext: 'Trẻ em (6 - 18 tuổi)',
                     textController: controllers['children']!),
                 const SizedBox(
                   height: 20,

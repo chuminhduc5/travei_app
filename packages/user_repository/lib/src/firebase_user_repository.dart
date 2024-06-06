@@ -97,4 +97,20 @@ class FirebaseUserRepository implements UserRepository {
       rethrow;
     }
   }
+
+  // @override
+  // Future<MyUser> getMyUser(String myUserId) async {
+  //   try {
+  //     DocumentSnapshot snapshot = await usersCollection.doc(myUserId).get();
+  //     if (snapshot.exists) {
+  //       return MyUser.formEntity(MyUserEntity.fromDocument(snapshot.data() as Map<String, dynamic>));
+  //     } else {
+  //       throw Exception("User not found");
+  //     }
+  //   } catch (e) {
+  //     log(e.toString());
+  //     rethrow;
+  //   }
+  // }
+
 }

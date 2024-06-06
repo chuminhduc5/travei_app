@@ -1,22 +1,33 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_application/blocs/my_user_bloc/my_user_bloc.dart';
 
-import '../../blocs/sign_in_bloc/sign_in_bloc.dart';
-
-class AcountScreen extends StatelessWidget {
-  const AcountScreen({super.key});
+class AccountScreen extends StatelessWidget {
+  const AccountScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: (){
-            context.read<SignInBloc>().add(const SignOutRequired());
-            print('LogOut');
-          },
-          child: Text('Đăng xuất'),
-        ),
+      body: Padding(
+          padding: EdgeInsets.all(16),
+          child: BlocBuilder<MyUserBloc, MyUserState>(
+            builder: (context, state) {
+              if (state.status == MyUserStatus.success) {
+                return Column(
+                  children: [
+                    Text("Welcome ${state.user!.name}"),
+                    Text(state.user!.email),
+                    Text(state.user!.phoneNumber),
+                  ],
+                );
+              }
+              else {
+                return Container();
+              }
+            },
+          ),
       ),
     );
   }

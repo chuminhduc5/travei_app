@@ -1,15 +1,19 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_application/blocs/get_travel_bloc/get_travel_bloc.dart';
 import 'package:travel_application/screens/travel/booking_screen.dart';
 import 'package:travel_application/widgets/travel/button_booking_travel_widget.dart';
 import 'package:travel_application/widgets/travel/slider_travel_widget.dart';
+import 'package:travel_application/widgets/travel/table_price_widget.dart';
 import 'package:travel_repository/travel_repository.dart';
 
 import '../../theme.dart';
 
 class DetailTravelScreen extends StatefulWidget {
   final Travel travel;
+
   const DetailTravelScreen(this.travel, {super.key});
 
   @override
@@ -32,16 +36,11 @@ class _DetailTravelScreenState extends State<DetailTravelScreen> {
           SingleChildScrollView(
             child: Column(
               children: [
-                // Build Body Content
                 _buildBody(),
 
-                // Build Booking Tour
-
-                const SizedBox(
-                  height: 80,
-                ),
+              const SizedBox(height: 80,),
               ],
-            ),
+            )
           ),
           Align(
             alignment: Alignment.bottomCenter,
@@ -52,7 +51,7 @@ class _DetailTravelScreenState extends State<DetailTravelScreen> {
     );
   }
 
-  Widget _buildBody(){
+  Widget _buildBody() {
     return Padding(
       padding: const EdgeInsets.all(0),
       child: Column(
@@ -84,21 +83,29 @@ class _DetailTravelScreenState extends State<DetailTravelScreen> {
                       ),
                       TextSpan(
                         text: '${widget.travel.date}\n',
-                        style: const TextStyle(
-                            color: Colors.black,
-                            height: 1.5),
+                        style:
+                        const TextStyle(color: Colors.black, height: 1.5),
                       ),
                       const TextSpan(
                         text: '- Hàng không 5*: Asiana Airlines\n',
-                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, height: 1.5),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            height: 1.5),
                       ),
                       TextSpan(
                         text: '- Khởi hành: ${widget.travel.departureDate}\n',
-                        style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, height: 1.5),
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            height: 1.5),
                       ),
                       TextSpan(
                         text: '${widget.travel.departureDate}\n',
-                        style: const TextStyle(color: Colors.black, fontWeight: FontWeight.bold, height: 1.5),
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            height: 1.5),
                       ),
                       const TextSpan(
                         text: 'Lịch trình tour\n',
@@ -143,54 +150,7 @@ class _DetailTravelScreenState extends State<DetailTravelScreen> {
                   'GIÁ TOUR TRỌN GÓI: VNĐ/ KHÁCH',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
-                const Text(
-                  '(Áp dụng cho khách lẻ ghép đoàn)',
-                  style: TextStyle(fontSize: 16, color: Colors.red),
-                ),
-                Center(
-                  child: Table(
-                    defaultColumnWidth: const FixedColumnWidth(140),
-                    border: TableBorder.all(
-                      color: Colors.black,
-                      style: BorderStyle.solid,
-                      width: 1,
-                    ),
-                    children: [
-                      const TableRow(children: [
-                        Column(
-                          children: [Text('Độ tuổi')],
-                        ),
-                        Column(
-                          children: [Text('Giá')],
-                        ),
-                      ]),
-                      TableRow(children: [
-                        const Column(
-                          children: [Text('Người lớn')],
-                        ),
-                        Column(
-                          children: [Text(widget.travel.price)],
-                        ),
-                      ]),
-                      const TableRow(children: [
-                        Column(
-                          children: [Text('Trẻ em')],
-                        ),
-                        Column(
-                          children: [Text('90%')],
-                        ),
-                      ]),
-                      const TableRow(children: [
-                        Column(
-                          children: [Text('Em bé')],
-                        ),
-                        Column(
-                          children: [Text('30%')],
-                        ),
-                      ]),
-                    ],
-                  ),
-                )
+                Center(child: TablePriceWidget(price: widget.travel.price)),
               ],
             ),
           ),

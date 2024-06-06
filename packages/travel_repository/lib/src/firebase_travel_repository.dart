@@ -22,4 +22,22 @@ class FirebaseTravelRepository implements TravelRepository{
       rethrow;
     }
   }
+
+  @override
+  Future<List<Travel>> searchTravel(String query) async{
+    try {
+      log('Starting searchTravel with query: $query');
+      final result = await travelCollection
+          .where('name', isGreaterThanOrEqualTo: query)
+          .where('name', isLessThanOrEqualTo: query + '\uf8ff')
+          .get();
+      return result.docs.map((doc) => Travel.formEntity(TravelEntity.fromDocument(doc.data()))).toList();
+    } catch (e){
+      log(e.toString());
+      rethrow;
+    }
+  }
+
+
+
 }

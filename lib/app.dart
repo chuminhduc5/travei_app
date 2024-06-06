@@ -8,6 +8,9 @@ import 'package:travel_application/screens/authentication/welcome_screen.dart';
 import 'package:travel_application/screens/home/home_screen.dart';
 import 'package:travel_repository/travel_repository.dart';
 
+import 'blocs/my_user_bloc/my_user_bloc.dart';
+import 'blocs/search_bloc/search_bloc.dart';
+
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
@@ -25,23 +28,23 @@ class MainApp extends StatelessWidget {
                           userRepository: context.read<AuthenticationBloc>().userRepository
                       )
                   ),
-                  // BlocProvider(
-                  //   create: (context) => MyUserBloc(
-                  //       myUserRepository: context.read<AuthenticationBloc>().userRepository
-                  //   )..add(GetMyUser(
-                  //       myUserId: context.read<AuthenticationBloc>().state.user!.uid
-                  //   )),
-                  // ),
-                  // BlocProvider(
-                  //     create: (context) => GetNewsBloc(
-                  //         FirebaseNewsRepository()
-                  //     )..add(GetNews())
-                  // ),
                   BlocProvider(
+                    create: (context) => MyUserBloc(
+                        myUserRepository: context.read<AuthenticationBloc>().userRepository
+                    )..add(GetMyUser(
+                        myUserId: context.read<AuthenticationBloc>().state.user!.uid
+                    )),
+                  ),
+                  BlocProvider<GetTravelBloc>(
                       create: (context) => GetTravelBloc(
                           FirebaseTravelRepository()
                       )..add(GetTravel())
                   ),
+                  BlocProvider<SearchBloc>(
+                      create: (context) => SearchBloc(
+                        travelRepository: FirebaseTravelRepository(),
+                      )
+                  )
                 ],
                 child: MyAppView(),
               );

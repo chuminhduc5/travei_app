@@ -23,11 +23,11 @@ class _SliderTravelWidgetState extends State<SliderTravelWidget> {
     // Initialize the list of image URLs with the first image being the travel image
     imageUrls = [
       widget.travel.picture,
-      'assets/images/korea_jeju.png',
-      'assets/images/korea_jeju.png',
-      'assets/images/korea_jeju.png',
-      'assets/images/korea_jeju.png',
-      'assets/images/korea_jeju.png',
+      'https://doicanhviet.com/upload/slide_img/product/70889/70889-10.webp',
+      'https://doicanhviet.com/upload/slide_img/product/70889/70889-6.webp',
+      'https://doicanhviet.com/upload/Image/Tour/Han%20Quoc/mua-he/han%20quoc%20he%205.jpg',
+      'https://doicanhviet.com/upload/Image/Tour/Han%20Quoc/329291311_535023088733753_5507906482495424786_n.jpg',
+      'https://doicanhviet.com/upload/Image/Tour/Han%20Quoc/mua-he/han%20quoc%20mua%20he%201.jpg',
     ];
   }
 

@@ -31,7 +31,7 @@ class MyUser extends Equatable {
   bool get isEmpty => this == MyUser.empty;
 
   // Xác định người dùng hiện tại có đang trống hay không
-  bool get isNotEmpty => this == MyUser.empty;
+  bool get isNotEmpty => this != MyUser.empty;
 
 
   MyUserEntity toEntity(){
@@ -45,10 +45,10 @@ class MyUser extends Equatable {
 
   static MyUser formEntity(MyUserEntity entity){
     return MyUser(
-        id: empty.id,
-        email: empty.email,
-        name: empty.name,
-        phoneNumber: empty.phoneNumber
+        id: entity.id,
+        email: entity.email,
+        name: entity.name,
+        phoneNumber: entity.phoneNumber
     );
   }
 

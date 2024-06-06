@@ -33,7 +33,7 @@ class _MyAppViewState extends State<MyAppView> {
   final List<Widget> _screens = [
     const HomeScreen(),
     const FavoriteScreen(),
-    const AcountScreen(),
+    const AccountScreen(),
   ];
   @override
   Widget build(BuildContext context) {
