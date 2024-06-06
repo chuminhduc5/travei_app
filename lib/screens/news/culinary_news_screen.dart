@@ -30,7 +30,7 @@ class CulinaryNewsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('assets/images/img_2.png', fit: BoxFit.cover),
+                    Image.network('https://www.huongnghiepaau.com/wp-content/uploads/2022/06/kim-chi-cai-thao-chua-vi-han-quoc.jpg', fit: BoxFit.cover),
                     const SizedBox(height: 10),
                     const Text(
                       'Kimchi đặc sản của Hàn Quốc',
@@ -58,7 +58,7 @@ class CulinaryNewsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('assets/images/img_2.png', fit: BoxFit.cover),
+                    Image.network('https://cdn.eva.vn/upload/3-2023/images/2023-07-17/2-cach-lam-com-tron-han-quoc---bibimbap-tai-nha-ngon-nhu-ngoai-tiem-9-1689560337-460-width600height400.jpg', fit: BoxFit.cover),
                     const SizedBox(height: 10),
                     const Text(
                       'Cơm trộn Bibimbap Hàn Quốc',
@@ -86,7 +86,7 @@ class CulinaryNewsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('assets/images/img_2.png', fit: BoxFit.cover),
+                    Image.network('https://muahohanquoc.com/wp-content/uploads/2021/07/Bulgogi.png', fit: BoxFit.cover),
                     const SizedBox(height: 10),
                     const Text(
                       'Thịt nướng Bulgogi Hàn Quốc',
@@ -115,7 +115,7 @@ class CulinaryNewsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('assets/images/img_2.png', fit: BoxFit.cover),
+                    Image.network('https://dulichvietnam.com.vn/du-lich-han-quoc/wp-content/uploads/2024/03/Samgyeopsal-1.jpg', fit: BoxFit.cover),
                     const SizedBox(height: 10),
                     const Text(
                       'Thịt ba chỉ nướng Hàn Quốc',
@@ -143,7 +143,7 @@ class CulinaryNewsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('assets/images/img_2.png', fit: BoxFit.cover),
+                    Image.network('https://cdn.eva.vn/upload/3-2023/images/2023-07-28/cach-lam-banh-gao-cay-han-quoc-tokbokki-don-gian-tai-nha-7-1690517938-22-width650height380.jpg', fit: BoxFit.cover),
                     const SizedBox(height: 10),
                     const Text(
                       'Tteokbokki truyền thống Hàn Quốc',
@@ -171,7 +171,7 @@ class CulinaryNewsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
-                    Image.asset('assets/images/img_2.png', fit: BoxFit.cover),
+                    Image.network('https://static-images.vnncdn.net/files/publish/2023/11/3/mi-lanh-1-593.jpg', fit: BoxFit.cover),
                     const SizedBox(height: 10),
                     const Text(
                       'Mì lạnh Hàn Qốc',

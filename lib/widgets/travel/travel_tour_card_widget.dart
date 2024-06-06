@@ -45,7 +45,7 @@ class TravelTourCardWidget extends StatelessWidget {
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),
-                  overflow: TextOverflow.ellipsis,
+                  overflow: TextOverflow.clip,
                 ),
                 const SizedBox(height: 4),
                 Row(
@@ -57,7 +57,7 @@ class TravelTourCardWidget extends StatelessWidget {
                     const SizedBox(width: 10),
                     Flexible(
                       child: Text(
-                        'Số ngày: ${price}',
+                        'Số ngày: ${date}',
                         style: const TextStyle(
                           fontSize: 13,
                         ),
@@ -106,7 +106,7 @@ class TravelTourCardWidget extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                           fontSize: 16,
                         ),
-                        overflow: TextOverflow.ellipsis,
+                        overflow: TextOverflow.clip,
                       ),
                     ),
                   ],

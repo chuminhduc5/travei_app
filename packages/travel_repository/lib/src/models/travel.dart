@@ -22,6 +22,16 @@ class Travel {
       required this.price,
       required this.description});
 
+  static final empty = Travel(
+      travelId: '',
+      name: '',
+      picture: '',
+      journey: '',
+      date: '',
+      departureDate: '',
+      price: '',
+      description: '');
+
   TravelEntity toEntity() {
     return TravelEntity(
         travelId: travelId,

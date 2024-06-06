@@ -84,7 +84,7 @@ class _DetailTravelScreenState extends State<DetailTravelScreen> {
                       TextSpan(
                         text: '${widget.travel.date}\n',
                         style:
-                        const TextStyle(color: Colors.black, height: 1.5),
+                        const TextStyle(color: Colors.black, height: 1.5,  fontWeight: FontWeight.bold,),
                       ),
                       const TextSpan(
                         text: '- Hàng không 5*: Asiana Airlines\n',
@@ -100,13 +100,13 @@ class _DetailTravelScreenState extends State<DetailTravelScreen> {
                             fontWeight: FontWeight.bold,
                             height: 1.5),
                       ),
-                      TextSpan(
-                        text: '${widget.travel.departureDate}\n',
-                        style: const TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold,
-                            height: 1.5),
-                      ),
+                      // TextSpan(
+                      //   text: '${widget.travel.departureDate}\n',
+                      //   style: const TextStyle(
+                      //       color: Colors.black,
+                      //       fontWeight: FontWeight.bold,
+                      //       height: 1.5),
+                      // ),
                       const TextSpan(
                         text: 'Lịch trình tour\n',
                         style: TextStyle(
@@ -119,26 +119,6 @@ class _DetailTravelScreenState extends State<DetailTravelScreen> {
                         text: widget.travel.description,
                         style:
                         const TextStyle(color: Colors.black, height: 1.5),
-                      ),
-                      const TextSpan(
-                        text: 'Ngày 2: Seoul - Jeju\n',
-                        style: TextStyle(color: Colors.black, height: 1.5),
-                      ),
-                      const TextSpan(
-                        text: 'Ngày 3: Jeju\n',
-                        style: TextStyle(color: Colors.black, height: 1.5),
-                      ),
-                      const TextSpan(
-                        text: 'Ngày 4: Jeju - Seoul\n',
-                        style: TextStyle(color: Colors.black, height: 1.5),
-                      ),
-                      const TextSpan(
-                        text: 'Ngày 5: Seoul - Nami\n',
-                        style: TextStyle(color: Colors.black, height: 1.5),
-                      ),
-                      const TextSpan(
-                        text: 'Ngày 6: Seoul - Hà Nội',
-                        style: TextStyle(color: Colors.black, height: 1.5),
                       ),
                     ],
                   ),

@@ -36,6 +36,9 @@ dependencies:
   news_repository:
     path: packages/news_repository
 
+  booking_repository:
+    path: packages/booking_repository
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -73,6 +73,7 @@ class _MyAppViewState extends State<MyAppView> {
           onTap: _navigateBottomBar,
           type: BottomNavigationBarType.fixed,
           selectedItemColor: AppColors.blue,
+          backgroundColor: Colors.white,
           selectedFontSize: 15,
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
