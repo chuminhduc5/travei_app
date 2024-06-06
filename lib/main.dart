@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_application/blocs/authentication_bloc/authentication_bloc.dart';
 import 'package:travel_application/simple_bloc_observer.dart';
 import 'package:user_repository/user_repository.dart';
-
-import 'app_view.dart';
+import 'app.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
               create: (_) => AuthenticationBloc(myUserRepository: userRepository)
           )
         ],
-        child: MyAppView(),
+        child: MainApp(),
     );
   }
 }

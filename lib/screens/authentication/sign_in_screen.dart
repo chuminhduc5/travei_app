@@ -39,7 +39,7 @@ class _SignInScreenState extends State<SignInScreen> {
         } else if (state is SignInFailure) {
           setState(() {
             signInRequired = false;
-            _errorMsg = 'Invalid email or password';
+            _errorMsg = 'Tài khoản chưa hợp lệ. Vui lòng nhập lại';
           });
         }
       },
@@ -48,10 +48,6 @@ class _SignInScreenState extends State<SignInScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              // const SizedBox(
-              //   height: 50,
-              // ),
-              //Container(width: 350, height: 300),
               const SizedBox(
                 height: 50,
               ),
@@ -59,21 +55,10 @@ class _SignInScreenState extends State<SignInScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: <Widget>[
-                    // const Text(
-                    //   'Đăng nhập',
-                    //   style: TextStyle(
-                    //     fontWeight: FontWeight.bold,
-                    //     fontSize: 40,
-                    //   ),
-                    // ),
-                    //const SizedBox(height: 30),
                     Form(
                         key: _formKey,
                         child: Column(
                           children: [
-                            // const SizedBox(
-                            //   height: 20,
-                            // ),
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.9,
                               child: TextFieldWidget(
@@ -86,9 +71,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                   errorMsg: _errorMsg,
                                   validator: (val) {
                                     if (val!.isEmpty) {
-                                      return 'Please fill in this fiald';
+                                      return 'Vui lòng nhập email';
                                     } else if (!emailRexExp.hasMatch(val)) {
-                                      return 'Please enter a valid email';
+                                      return 'Email chưa đúng. Vui lòng nhập lại';
                                     }
                                     return null;
                                   }),
@@ -108,9 +93,9 @@ class _SignInScreenState extends State<SignInScreen> {
                                 errorMsg: _errorMsg,
                                 validator: (val) {
                                   if (val!.isEmpty) {
-                                    return 'Please fill in this fiald';
+                                    return 'Vui lòng nhập mật khẩu';
                                   } else if (!passwordRexExp.hasMatch(val)) {
-                                    return 'Please enter a valid password';
+                                    return 'Mật khẩu chưa đúng. Vui lòng nhập lại';
                                   }
                                   return null;
                                 },
@@ -130,8 +115,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 10),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 30),
                             !signInRequired
                                 ? MyButtonWidget(
                                     onPressed: () {
@@ -142,7 +126,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                       }
                                     },
                                     textButton: 'Đăng nhập')
-                                : CircularProgressIndicator()
+                                : const   CircularProgressIndicator()
                           ],
                         )),
                   ],

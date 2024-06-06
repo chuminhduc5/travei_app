@@ -1,16 +1,16 @@
-import 'package:equatable/equatable.dart';
+//import 'package:equatable/equatable.dart';
 
 import '../../travel_repository.dart';
 
-class Travel extends Equatable {
-  String travelId;
-  String name;
-  String picture;
-  String journey;
-  String date;
-  String departureDate;
-  String price;
-  String description;
+class Travel {
+  final String travelId;
+  final String name;
+  final String picture;
+  final String journey;
+  final String date;
+  final String departureDate;
+  final String price;
+  final String description;
 
   Travel(
       {required this.travelId,
@@ -45,17 +45,4 @@ class Travel extends Equatable {
         price: entity.price,
         description: entity.description);
   }
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [
-        travelId,
-        name,
-        picture,
-        journey,
-        date,
-        departureDate,
-        price,
-        description
-      ];
 }

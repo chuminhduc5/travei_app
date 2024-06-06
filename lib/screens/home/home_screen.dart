@@ -1,16 +1,19 @@
-import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_application/blocs/get_travel_bloc/get_travel_bloc.dart';
+import 'package:travel_application/data/travel_news_data.dart';
+import 'package:travel_application/screens/travel/detail_travel_screen.dart';
 import 'package:travel_application/theme.dart';
-
-import '../../blocs/my_user_bloc/my_user_bloc.dart';
+import 'package:travel_application/widgets/travel/travel_discount_widget.dart';
+import 'package:travel_application/widgets/travel/travel_tour_card_widget.dart';
 import '../../blocs/sign_in_bloc/sign_in_bloc.dart';
+import '../../data/travel_discount_data.dart';
+import '../../widgets/travel/travel_news_widget.dart';
+import '../travel/travel_news_screen.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -20,110 +23,122 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.blue,
-        title: BlocBuilder<MyUserBloc, MyUserState>(
-          builder: (context, state) {
-            if (state.status == MyUserStatus.success) {
-              return Row(
-                children: [
-                  const SizedBox(width: 10),
-                  //Text("Welcome ${state.user!.name}"),
-                  Text('Welcome to travel Korea!')
-                ],
-              );
-            } else {
-              return Container();
-            }
-          },
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                context.read<SignInBloc>().add(SignOutRequired());
-                print('LogOut');
-              },
-              icon: const Icon(
-                CupertinoIcons.square_arrow_right,
-                color: Colors.white,
-              ))
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: BlocBuilder<GetTravelBloc, GetTravelState>(
+                builder: (context, state) {
+                  if (state is GetTravelSuccess) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Các chương trình khuyến mãi',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(height: 10),
+                        SizedBox(
+                          height: 180,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: travelDiscountList.length,
+                            itemBuilder: (context, index) => Container(
+                                width: 300,
+                                margin: const EdgeInsets.only(right: 10),
+                                child: TravelDiscountWidget(travelDiscount: travelDiscountList[index])),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        const Text(
+                          'Những điều thú vị về hàn quốc',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(
+                          height: 170,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: travelNewsList.length,
+                            itemBuilder: (context, index) => InkWell(
+                              onTap: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        TravelNewsScreen(news: travelNewsList[index])));
+                              },
+                              child: TravelNewsWidget(news: travelNewsList[index]),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        const Text(
+                          'Các tour du lịch hấp dẫn',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(height: 10),
+                        GridView.builder(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 1,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 25 / 12,
+                          ),
+                          itemCount: state.travels.length,
+                          itemBuilder: (context, int i) {
+                            return Material(
+                              elevation: 3,
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white,
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          DetailTravelScreen(state.travels[i]),
+                                    ),
+                                  );
+                                },
+                                child: TravelTourCardWidget(
+                                  picture: state.travels[i].picture,
+                                  name: state.travels[i].name,
+                                  date: state.travels[i].date,
+                                  departureDate: state.travels[i].departureDate,
+                                  price: state.travels[i].price,
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    );
+                  } else if (state is GetTravelLoading) {
+                    return const SizedBox();
+                  } else {
+                    return const Center(
+                      child: Text('Không có tour du lịch nào'),
+                    );
+                  }
+                },
+              ),
+            ),
+          ),
+          BlocBuilder<GetTravelBloc, GetTravelState>(
+            builder: (context, state) {
+              if (state is GetTravelLoading) {
+                return const Center(
+                  child: CircularProgressIndicator(color: AppColors.blue),
+                );
+              }
+              return Container(); // Returning an empty Container to avoid layout issues
+            },
+          ),
         ],
       ),
-      body: Padding(
-          padding: EdgeInsets.all(10),
-          child: BlocBuilder<GetTravelBloc, GetTravelState>(
-              builder: (context, state) {
-            if (state is GetTravelSuccess) {
-              return ListView.builder(
-                  itemCount: state.travels.length,
-                  itemBuilder: (context, index) {
-                    return Center(
-                      child: Text('Các tour du lịch'),
-                    );
-                    // return Container(
-                    //   margin: const EdgeInsets.only(bottom: 15),
-                    //   decoration: const BoxDecoration(
-                    //     color: Colors.white,
-                    //   ),
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.all(10.0),
-                    //     child: Column(
-                    //       crossAxisAlignment: CrossAxisAlignment.start,
-                    //       children: [
-                    //         ClipRRect(
-                    //           child: Image.asset('assets/images/korea_seoul.png', width: MediaQuery.of(context).size.width, height: 160, fit: BoxFit.cover),
-                    //         ),
-                    //         Text('TOUR 6N5Đ HÀN QUỐC NGHỈ LỄ 30.04', softWrap: true, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),),
-                    //         Row(
-                    //           crossAxisAlignment: CrossAxisAlignment.start,
-                    //           children: [
-                    //             const Icon(Icons.location_on_outlined, size: 16,),
-                    //             const SizedBox(width: 10,),
-                    //             Expanded(
-                    //               child: Text(
-                    //                 'Hành trình: HÀ NỘI - SEOUL - JEJU - NAMI - EVERLAND',
-                    //                 softWrap: true,
-                    //               ),
-                    //             ),
-                    //           ],
-                    //         ),
-                    //
-                    //         Row(
-                    //           children: [
-                    //             const Icon(Icons.access_time_outlined, size: 16,),
-                    //             const SizedBox(width: 10,),
-                    //             Text('Số ngày: 6 ngày 5 đêm')
-                    //           ],
-                    //         ),
-                    //         Row(
-                    //           children: [
-                    //             const Icon(Icons.calendar_month, size: 16,),
-                    //             const SizedBox(width: 10,),
-                    //             Text('Ngày khởi hành: 28/04/2024')
-                    //           ],
-                    //         ),
-                    //         Row(
-                    //           children: [
-                    //             const Icon(Icons.monetization_on_outlined, size: 16,),
-                    //             const SizedBox(width: 10,),
-                    //             Text('26.900.000 đ', style: const TextStyle(color: Colors.red))
-                    //           ],
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // );
-                  });
-            } else if (state is GetTravelLoading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else {
-              return const Center(
-                child: Text('Chưa có tour du lịch...'),
-              );
-            }
-          })),
     );
   }
 }

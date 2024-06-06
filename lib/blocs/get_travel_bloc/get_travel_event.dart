@@ -1,6 +1,5 @@
 part of 'get_travel_bloc.dart';
 
-@immutable
 sealed class GetTravelEvent extends Equatable{
   const GetTravelEvent();
 
@@ -9,6 +8,4 @@ sealed class GetTravelEvent extends Equatable{
   List<Object?> get props => [];
 }
 
-class GetTravel extends GetTravelEvent{
-
-}
+class GetTravel extends GetTravelEvent{}

@@ -53,18 +53,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              //Container(width: 350, height: 300),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: <Widget>[
-                    // const Text(
-                    //   'Đăng Ky',
-                    //   style: TextStyle(
-                    //     fontWeight: FontWeight.bold,
-                    //     fontSize: 40,
-                    //   ),
-                    // ),
                     const SizedBox(height: 30),
                     Form(
                         key: _formKey,
@@ -84,9 +76,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       const Icon(CupertinoIcons.person_fill),
                                   validator: (val) {
                                     if (val!.isEmpty) {
-                                      return 'Please fill in this field';
+                                      return 'Vui lòng nhập tên của bạn!';
                                     } else if (val.length > 30) {
-                                      return 'Name too long';
+                                      return 'Tên của bạn quá dài. Vui lòng nhập lại';
                                     }
                                     return null;
                                   }),
@@ -105,9 +97,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       const Icon(CupertinoIcons.phone_fill),
                                   validator: (val) {
                                     if (val!.isEmpty) {
-                                      return 'Please fill in this field';
-                                    } else if (val.length > 30) {
-                                      return 'Name too long';
+                                      return 'Vui lòng nhập số điện thoại của bạn!';
+                                    } else if (val.length != 10) {
+                                      return 'Số điện thoại chưa hợp lệ. Vui lòng nhập lại!';
                                     }
                                     return null;
                                   }),
@@ -126,9 +118,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                       const Icon(CupertinoIcons.mail_solid),
                                   validator: (val) {
                                     if (val!.isEmpty) {
-                                      return 'Please fill in this field';
+                                      return 'Vui lòng nhập email';
                                     } else if (!emailRexExp.hasMatch(val)) {
-                                      return 'Please enter a valid email';
+                                      return 'Email chưa hợp lệ. Vui lòng nhập lại';
                                     }
                                     return null;
                                   }),
@@ -210,21 +202,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   validator: (val) {
                                     if (val!.isEmpty) {
-                                      return 'Please fill in this field';
+                                      return 'Vui lòng nhập mật khẩu';
                                     } else if (!passwordRexExp.hasMatch(val)) {
-                                      return 'Please enter a valid password';
+                                      return 'Mật khẩu chưa hợp lệ. Vui lòng nhập lại';
                                     }
                                     return null;
                                   }),
                             ),
                             const SizedBox(height: 10),
                             RichText(
-                              //softWrap: true,
-                              //overflow: TextOverflow.clip,
                               text: TextSpan(
                                   children: [
                                     TextSpan(
-                                      text: '(Mật khẩu dài trên 8 kí tự, ',
+                                      text: '(Có 8 kí tự, ',
                                       style: TextStyle(
                                           color: contains8Length
                                               ? Colors.green

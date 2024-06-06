@@ -1,4 +1,4 @@
-import 'package:travel_repository/src/models/models.dart';
+import '../travel_repository.dart';
 
 abstract class TravelRepository{
   Future<List<Travel>> getTravel();
