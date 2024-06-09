@@ -41,7 +41,7 @@ class AccountScreen extends StatelessWidget {
                       Center(
                         child: Text(
                           state.user!.email,
-                          style: TextStyle(fontSize: 16, color: Colors.grey),
+                          style: const TextStyle(fontSize: 16, color: Colors.grey),
                         ),
                       ),
                       const SizedBox(height: 24),

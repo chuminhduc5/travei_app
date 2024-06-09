@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_application/blocs/sign_up_bloc/sign_up_bloc.dart';
+import 'package:travel_application/screens/authentication/sign_in_screen.dart';
 import 'package:user_repository/user_repository.dart';
 
 import '../../theme.dart';
@@ -38,8 +39,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       listener: (context, state) {
         if (state is SignUpSuccess) {
           setState(() {
-            signUpRequired = false;
+            signUpRequired = true;
           });
+
         } else if (state is SignUpProcess) {
           setState(() {
             signUpRequired = true;
@@ -270,7 +272,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         MyUser myUser = MyUser.empty;
                                         myUser = myUser.copyWith(
                                             email: emailController.text,
-                                            name: nameController.text);
+                                            name: nameController.text,
+                                            phoneNumber: phoneNumberController.text
+                                        );
 
                                         setState(() {
                                           context.read<SignUpBloc>().add(

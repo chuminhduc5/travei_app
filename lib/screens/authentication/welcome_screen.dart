@@ -35,10 +35,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar: AppBar(
-      //   elevation: 0,
-      //   backgroundColor: Colors.transparent,
-      // ),
       body: SingleChildScrollView(
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
@@ -49,12 +45,6 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                 Container(
                   child: Image.asset('assets/images/logo.png', width: 350, height: 300, fit: BoxFit.cover,),
                 ),
-                // const Text('Welcome to travel Korea!',
-                //     style:
-                //     TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AppColors.blue)),
-                // const SizedBox(
-                //   height: 30,
-                // ),
                 Container(
                   decoration: const BoxDecoration(
                     border: Border(

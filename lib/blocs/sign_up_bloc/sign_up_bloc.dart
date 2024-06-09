@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
+import 'package:travel_application/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:user_repository/user_repository.dart';
 
 part 'sign_up_event.dart';

@@ -5,11 +5,8 @@ import 'package:travel_application/blocs/authentication_bloc/authentication_bloc
 import 'package:travel_application/blocs/get_travel_bloc/get_travel_bloc.dart';
 import 'package:travel_application/blocs/sign_in_bloc/sign_in_bloc.dart';
 import 'package:travel_application/screens/authentication/welcome_screen.dart';
-import 'package:travel_application/screens/home/home_screen.dart';
 import 'package:travel_repository/travel_repository.dart';
-
 import 'blocs/my_user_bloc/my_user_bloc.dart';
-import 'blocs/search_bloc/search_bloc.dart';
 
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -40,13 +37,8 @@ class MainApp extends StatelessWidget {
                           FirebaseTravelRepository()
                       )..add(GetTravel())
                   ),
-                  BlocProvider<SearchBloc>(
-                      create: (context) => SearchBloc(
-                        travelRepository: FirebaseTravelRepository(),
-                      )
-                  )
                 ],
-                child: MyAppView(),
+                child: const MyAppView(),
               );
             } else{
               return const WelcomeScreen();

@@ -4,5 +4,4 @@ List travelNewsList = [
   TravelNews(title: 'Bốn mùa Hàn Quốc', image: 'https://www.tugo.com.vn/wp-content/uploads/Untitled-design.jpg'),
   TravelNews(title: 'Văn hóa Hàn Quốc', image: 'https://duhoc.thanhgiang.com.vn/sites/default/files/van-hoa-han-quoc.jpg'),
   TravelNews(title: 'Ẩm thực Hàn Quốc', image: 'https://ulis.vnu.edu.vn/files/uploads/2021/03/am-thuc-ham-quoc.jpg'),
-  TravelNews(title: 'Check in', image: 'https://datviettour.com.vn/uploads/images/tin-tuc-SEO-NN-chau-a/han-quoc/danh-thang/lang-co-bukcon-hanok1.jpg'),
 ];

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:travel_application/models/travel_news_model.dart';
-import 'package:travel_application/screens/news/checkin_news_screen.dart';
 import 'package:travel_application/screens/news/culinary_news_screen.dart';
 import 'package:travel_application/screens/news/cultural_news_screen.dart';
 import 'package:travel_application/screens/news/seasonal_news_screen.dart';
@@ -24,9 +23,6 @@ class TravelNewsScreen extends StatelessWidget {
         break;
       case 'Ẩm thực Hàn Quốc':
         detailWidget = CulinaryNewsScreen(news: news);
-        break;
-      case 'Check in':
-        detailWidget = CheckinNewsScreen(news: news);
         break;
       default:
         detailWidget = Container();
